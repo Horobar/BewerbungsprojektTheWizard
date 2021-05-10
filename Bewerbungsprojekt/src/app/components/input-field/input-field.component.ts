@@ -1,13 +1,8 @@
-import {Component} from '@angular/core';
-
-/**
- * @title Input with a clear button
- */
-@Component({
-  selector: 'input-clearable',
-  templateUrl: './input-clearable-example.html',
-  styleUrls: ['./input-clearable-example.css'],
-})
-export class InputClearableExample {
-  value = 'Clear me';
-}
+./input-clearable-example.css
+<mat-form-field class="example-form-field">
+  <mat-label>Clearable input</mat-label>
+  <input matInput type="text" [(ngModel)]="value">
+  <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-form-field>
