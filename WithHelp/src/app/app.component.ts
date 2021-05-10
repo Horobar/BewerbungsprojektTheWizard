@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
+
 export class AppComponent {
   title: string = 'this will be a fancy project';
   output: string = 'Here will be the recentOutput';
@@ -17,7 +18,6 @@ export class AppComponent {
   doConcat: boolean = false;
   doAdd: boolean = false;
 
-
   TestParam1: any = '1';
   TestParam2: any = '1';
 
@@ -27,6 +27,7 @@ export class AppComponent {
       'InputField'
     ) as HTMLInputElement).value;
 
+    console.log(input);
     this.output = this.parse(input);
   }
 
@@ -61,16 +62,17 @@ export class AppComponent {
         //begann der String mit concat?
         if(this.doConcat)
         {
-          this.outputGain = this.concat(this.workingString.substring(7,i), this.workingString.substring(i+2,(this.workingString.length-2)));
+          this.concat(this.workingString.substring(7,i), this.workingString.substring(i+2,(this.workingString.length-2)));
         }
         //begann der String mit Add
         else if(this.doAdd)
         {
-          this.outputGain = this.add(this.workingString.substring(4,i), this.workingString.substring(i+2,(this.workingString.length-2)));
+          this.add(this.workingString.substring(4,i), this.workingString.substring(i+2,(this.workingString.length-2)));
         }
       }
     }
-        return this.outputGain;
+    return this.output;
+
     //figure out which function
     //if concat
     // do concat
