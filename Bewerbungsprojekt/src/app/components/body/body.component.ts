@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { GetInputService } from '../../services/get-input.service';
+
 @Component({
   selector: 'app-body',
   templateUrl: './body.component.html',

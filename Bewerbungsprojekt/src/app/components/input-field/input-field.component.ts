@@ -9,5 +9,5 @@ import {Component} from '@angular/core';
   styleUrls: ['./input-field.component.css'],
 })
 export class InputClearableExample {
-  public currentValue: any = 'Clear me';
+  public currentValue: any = '';
 }

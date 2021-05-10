@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { InputClearableExample } from './components/input-field/input-field.component';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
+import { ButtonComponent } from './components/button/button.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { FormsModule } from '@angular/forms';
     BodyComponent,
     FooterComponent,
     InputClearableExample,
+    ButtonComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,1 +1,12 @@
-<input-field></input-field>
+<body>
+  <p>Please do your fancy stuff here</p>
+  
+  <label for="InputField">Input:</label>
+  <input-field name="InputField"></input-field>
+
+  <app-button
+    color="green"
+    text="Put together"
+    (btnClick)="getInput()"
+  ></app-button>
+</body>
