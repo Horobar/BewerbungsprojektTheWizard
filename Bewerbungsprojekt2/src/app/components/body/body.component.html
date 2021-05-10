@@ -1,1 +1,4 @@
-<p>body works!</p>
+<span>
+<app-input (messageEvent)="receiveMessage($event)"></app-input>
+<app-output [childMessage]="parentMessage"></app-output>
+</span>

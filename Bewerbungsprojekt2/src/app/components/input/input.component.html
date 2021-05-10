@@ -1,1 +1,5 @@
-<p>input works!</p>
+<form>
+  <label for="InputField">Input: </label>
+  <input type="text" name="textField" placeholder="Gib hier deinen String ein" [(ngModel)]="text">
+  <app-button text="Parse" (btnClick)="sendMessage()"></app-button>
+</form>

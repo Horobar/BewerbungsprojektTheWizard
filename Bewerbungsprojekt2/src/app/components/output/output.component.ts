@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-output',
@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./output.component.css']
 })
 export class OutputComponent implements OnInit {
+  public output! :string;
+  @Input() childMessage!: string;
+  constructor() {
 
-  constructor() { }
+    }
 
   ngOnInit(): void {
   }
-
 }
