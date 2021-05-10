@@ -6,4 +6,8 @@ import { Injectable } from '@angular/core';
 export class ConcatService {
 
   constructor() { }
+
+  concat(param1, param2) : {
+    return `${param1}${parma2}`;
+  }
 }
