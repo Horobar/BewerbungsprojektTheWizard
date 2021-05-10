@@ -13,6 +13,9 @@ export class AppComponent {
   outputGain!: string;
   workingString: string = "";
   testString: string = "";
+  parantCounter: number = 0;
+  doConcat: boolean = false;
+  doAdd: boolean = false;
 
   TestParam1: any = '1';
   TestParam2: any = '1';
@@ -29,7 +32,19 @@ export class AppComponent {
   parse(input: any) {
     this.workingString = input.toString();
     for (let i = 0; i < this.workingString.length; i++) {
-      teststring = this.teststring[i];
+      this.testString = this.workingString[i];
+      if(this.workingString[i] === '()') {
+        this.parantCounter++;
+      }
+      if(this.testString === 'concat') {
+        this.doConcat = true;
+      } else if ((this.testString === 'add')) {
+        this.doAdd = true;
+      }
+
+      if(this.workingString[i] === ','){
+
+      }
 
     }
     //figure out which function
