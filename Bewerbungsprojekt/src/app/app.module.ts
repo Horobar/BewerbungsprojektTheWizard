@@ -7,8 +7,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './components/header/header.component';
 import { BodyComponent } from './components/body/body.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { InputFieldComponent } from './components/input-field/input-field.component';
-
+import { MatInputModule } from '@angular/material/input';
+import { InputClearableExample } from './components/input-field/input-field.component';
+import { MatIconModule } from '@angular/material/icon';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,14 +18,17 @@ import { InputFieldComponent } from './components/input-field/input-field.compon
     HeaderComponent,
     BodyComponent,
     FooterComponent,
-    InputFieldComponent
+    InputClearableExample,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatIconModule,
+    FormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

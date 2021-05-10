@@ -1,7 +1,13 @@
 <mat-form-field class="example-form-field">
   <mat-label>Clearable input</mat-label>
-  <input matInput type="text" [(ngModel)]="value">
-  <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+  <input matInput placeholder="Input" [(ngModel)]="currentValue">
+
+  <button mat-button *ngIf="currentValue" matSuffix mat-icon-button aria-label="Clear" (click)="currentValue=''">
     <mat-icon>close</mat-icon>
   </button>
 </mat-form-field>
+
+
+<h1>
+  {{currentValue}}
+</h1>
