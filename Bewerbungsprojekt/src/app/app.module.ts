@@ -8,7 +8,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { BodyComponent } from './components/body/body.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { InputFieldComponent } from './components/input-field/input-field.component';
-//import { InputFieldComponent } from './components/input-field/input-field.component';
+
 
 @NgModule({
   declarations: [
@@ -16,8 +16,7 @@ import { InputFieldComponent } from './components/input-field/input-field.compon
     HeaderComponent,
     BodyComponent,
     FooterComponent,
-    InputFieldComponent,
-    //InputFieldComponent
+    InputFieldComponent
   ],
   imports: [
     BrowserModule,
