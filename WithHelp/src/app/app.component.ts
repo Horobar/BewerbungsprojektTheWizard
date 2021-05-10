@@ -10,12 +10,13 @@ export class AppComponent {
   title: string = 'this will be a fancy project';
   output: string = 'Here will be the recentOutput';
 
-  outputGain!: string;
+  outputGain!: any;
   workingString: string = "";
   testString: string = "";
   parantCounter: number = 0;
   doConcat: boolean = false;
   doAdd: boolean = false;
+
 
   TestParam1: any = '1';
   TestParam2: any = '1';
@@ -26,27 +27,50 @@ export class AppComponent {
       'InputField'
     ) as HTMLInputElement).value;
 
-    this.outputGain = this.parse(input);
+    this.output = this.parse(input);
   }
 
   parse(input: any) {
     this.workingString = input.toString();
-    for (let i = 0; i < this.workingString.length; i++) {
+    for (let i = 0; i < this.workingString.length; i++)
+    {
       this.testString = this.workingString[i];
-      if(this.workingString[i] === '()') {
+      //Testen, ob nur eine Klammer offen ist
+      if(this.workingString[i] === "(" )
+      {
         this.parantCounter++;
       }
-      if(this.testString === 'concat') {
+      else if(this.workingString[i] === ")" )
+      {
+        this.parantCounter--;
+      }
+
+      //Testen ob der eingegebene String mit add oder concat beginnt
+      if(this.testString === 'concat')
+      {
         this.doConcat = true;
-      } else if ((this.testString === 'add')) {
+      }
+      else if ((this.testString === 'add'))
+      {
         this.doAdd = true;
       }
 
-      if(this.workingString[i] === ','){
-
+      //ist man bei einem Komma und nur eine Klammer offen?
+      if((this.workingString[i] === ",") && this.parantCounter === 1)
+      {
+        //begann der String mit concat?
+        if(this.doConcat)
+        {
+          this.outputGain = this.concat(this.workingString.substring(7,i), this.workingString.substring(i+2,(this.workingString.length-2)));
+        }
+        //begann der String mit Add
+        else if(this.doAdd)
+        {
+          this.outputGain = this.add(this.workingString.substring(4,i), this.workingString.substring(i+2,(this.workingString.length-2)));
+        }
       }
-
     }
+        return this.outputGain;
     //figure out which function
     //if concat
     // do concat
@@ -60,7 +84,7 @@ export class AppComponent {
     //tipp params are separted by a comma but you need to find the correct comma since it not just the next one
     //if neither
     // return input
-    return input;
+
   }
 
   /**
@@ -69,6 +93,7 @@ export class AppComponent {
   concat(param1: any, param2: any) {
     //either param could be a function like concat(1,1) is equal to 11
     //so you need to call parse(param1) and parse(param2)
+    return `${this.parse(param1)}${this.parse(param2)}`;
   }
 
   /**
