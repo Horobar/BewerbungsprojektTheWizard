@@ -28,7 +28,9 @@ export class BodyComponent implements OnInit {
     //Test getLastCommaIndex
     //testGetLastCommaIndex();
     //Test: add()
-    testAdd();
+    //testAdd();
+    //Test: concat()
+    testConcat();
 
   }
 }
@@ -168,4 +170,21 @@ function concat(param1:any, param2:any){
   param1 = param1 as string;
   param2 = param2 as string;
   return `${param1}${param2}`;
+}
+//Test-Concat()
+function testConcat(): void
+{
+  const testParam1:string =  "A";
+  const testParam2:number =  10;
+  const testParam3:string =  "10";
+  const testParam4:string = "add(10, 11)";
+  console.log("concat() Test:")
+  // console.log("add(10, 10)");
+  // console.log(add(testParam2, testParam2));
+  console.log("concat(A, 10)");
+  console.log(concat(testParam1, testParam2));
+  console.log("concat(10, \"10\")");
+  console.log(concat(testParam2, testParam3));
+  console.log("concat(10, \"add(10, 11)\")");
+  console.log(concat(testParam2, testParam4));
 }
