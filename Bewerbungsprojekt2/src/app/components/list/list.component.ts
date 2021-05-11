@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-list',
@@ -6,10 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
+  @Input() givenOutput!: string;
+  @Input() givenInput!: string;
 
   constructor() { }
 
   ngOnInit(): void {
   }
+  public InputsOutputs: string[][] = [];
+  addData($event:any) {
+  this.InputsOutputs.push([this.givenInput,this.givenOutput])
+  console.log(this.InputsOutputs);
 
+  }
 }

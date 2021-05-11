@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class OutputComponent implements OnInit {
   public output! :string;
-  @Input() childMessage!: string;
+  @Input() givenOutput!: string;
   constructor() {
 
     }

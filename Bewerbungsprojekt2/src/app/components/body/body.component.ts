@@ -17,11 +17,10 @@ export class BodyComponent implements OnInit {
   //weiterverschickt
   receiveMessage($event: any) {
 
-
     this.message = $event;
-    console.log(this.message);
+    //console.log(this.message);
     this.parentMessage = parse(this.message);
-    console.log(this.parentMessage);
+    //console.log(this.parentMessage);
 
     //Test Funktion stringSaveFinder
     //testStringSaveFinder();
@@ -30,13 +29,14 @@ export class BodyComponent implements OnInit {
     //Test: add()
     //testAdd();
     //Test: concat()
-    testConcat();
-
+    //testConcat();
+    //test:Parse().
+    //testParse();
   }
 }
 //ParseFunktion
-function parse(param:string) {
-  console.log(param);
+function parse(param:any) {
+  //console.log(param);
   let cmdEnd: number = stringSaveFinder(param, "(");
   if(cmdEnd == -1) {
     return param;
@@ -50,29 +50,58 @@ function parse(param:string) {
   }
 
   let cmd: string = param.substring(0,cmdEnd).toLowerCase().trim();
-  console.log(`cmd:${cmd}`);
+  //console.log(`cmd:${cmd}`);
   param = param.substring(cmdEnd+1);
-
+  //console.log(`Param nach cmd weg : ${param}`);
   if(stringSaveFinder(param, "(") > -1) {
     param = parse(param) as string;
   }
-
+  //console.log(`Param nach rekursion : ${param}`);
   commaIndex = stringSaveFinder(param, ",");
   let closingParant: number = stringSaveFinder(param, ")");
   let inputLeft:string = param.substring(0, commaIndex);
-  console.log(`Left:${inputLeft}`)
-  let inputRight:string = param.substring(commaIndex+1, closingParant-commaIndex);
-  console.log(`Right:${inputRight}`)
+  //console.log(`Left:${inputLeft}`)
+  let inputRight:string = param.substring(commaIndex+1, closingParant);
+  //console.log(`Right:${inputRight}`)
   if(cmd === 'add'){
     let addOutput: any = add(inputLeft, inputRight);
     if(addOutput != NaN) {
       return concat(preCommand, concat(addOutput, param.substring(closingParant+1)));
     }
-    return;
-  } else if (cmd === 'concat') {
-    return concat(preCommand, concat(concat(inputLeft, inputRight), param.substring(closingParant+1)));
-  }
 
+  } else if (cmd === 'concat') {
+    return concat(preCommand, concat(concat(trimClean(inputLeft), trimClean(inputRight)), param.substring(closingParant+1)));
+  }
+}
+
+//testParse()
+function testParse(): void {
+  let parseTestInput1: string = "A"; //geht
+  let parseTestInput2: number = 10; //geht
+  let parseTestInput3: string = "concat(A, 10)"; //geht
+  let parseTestInput4: string = "concat(\"A\", \"10\")";
+  let parseTestInput5: string = "add(10, 10) ";
+  let parseTestInput6: string = "add(\"10\", \"10\")"; //geht
+  let parseTestInput7: string = "add(10, -10)"; //geht nicht
+  let parseTestInput8: string = "add(\"10\", \"Baum\")";
+  let parseTestInput9: string = "add(10, concat(1,1))";
+  let parseTestInput10: string = "concat(add(1,1) , concat(\" Bäume\", \" im Wald\"))"; //geht nicht, kriege Anführungszeichen nicht weg
+  let parseTestInput11: string = "concat(a, concat(a, concat(a, concat(a, add(1, add(1, add(1, 2)))))))";
+  let parseTestInput12: string = "\"concat(\"A\", \"B\")\" ";
+  let parseTestInput13: string = "concat(\"concat(A,B)\", 10";
+  let parseTestInput14: string = "concat(10, \"concat(A,B)\")";
+
+  console.log(parseTestInput5);
+  console.log(parse(parseTestInput5));
+
+}
+//funktion zu trimmen von inputright und inputleft
+function trimClean(param: any){
+  let paramCleaned:string = param.trim();
+  if(paramCleaned[0] === "\"" && paramCleaned[-1] === "\"") {
+    paramCleaned = paramCleaned.substring(1,-2);
+  }
+  return paramCleaned;
 }
 //Funktion zum Finden von Zeichen, die nicht in Anführungszeichen stehen
 function stringSaveFinder(param: string, sign: string)

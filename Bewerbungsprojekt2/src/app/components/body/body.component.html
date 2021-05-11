@@ -1,4 +1,5 @@
 <span>
 <app-input (messageEvent)="receiveMessage($event)"></app-input>
-<app-output [childMessage]="parentMessage"></app-output>
+<app-output [givenOutput]="parentMessage"></app-output>
+<app-list [givenOutput]="parentMessage" [givenInput]="message"></app-list>
 </span>
