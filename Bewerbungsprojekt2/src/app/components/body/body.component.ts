@@ -24,7 +24,7 @@ export class BodyComponent implements OnInit {
     console.log(this.parentMessage);
 
     //Test Funktion stringSaveFinder
-    //testStringSaveFinder();
+    testStringSaveFinder();
   }
 }
 //ParseFunktion
@@ -86,8 +86,17 @@ function testStringSaveFinder(): void
 {
   const testString1:string =  "concat(add(1,1) , concat(\" Bäume\", \" im Wald\"))";
   const testString2:string =  "concat(10, \"concat(A,B)\")";
+  const testString3:string =  "\"concat(\"A\", \"B\")\" ";
+  console.log("StringSaveFinder Test:")
+  console.log("concat(10, \"concat(A,B)\")");
   console.log(stringSaveFinder(testString2, ","));
   console.log(stringSaveFinder(testString2, "("));
+  console.log("concat(add(1,1) , concat(\" Bäume\", \" im Wald\"))");
+  console.log(stringSaveFinder(testString1, ","));
+  console.log(stringSaveFinder(testString1, "("));
+  console.log("\"concat(\"A\", \"B\")\" ");
+  console.log(stringSaveFinder(testString3, ","));
+  console.log(stringSaveFinder(testString3, "("));
 }
 
 //Funktion für das Aufspüren der richtigen Kommas
