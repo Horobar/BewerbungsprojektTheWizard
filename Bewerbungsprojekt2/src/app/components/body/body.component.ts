@@ -24,7 +24,9 @@ export class BodyComponent implements OnInit {
     console.log(this.parentMessage);
 
     //Test Funktion stringSaveFinder
-    testStringSaveFinder();
+    //testStringSaveFinder();
+    //Test getLastCommaIndex
+    testGetLastCommaIndex();
   }
 }
 //ParseFunktion
@@ -114,6 +116,19 @@ function getLastCommaIndex(param: string)
     return idn + idx + 1;
 }
 
+function testGetLastCommaIndex(): void
+{
+  const testString1:string =  "concat(add(1,1) , concat(\" Bäume\", \" im Wald\"))";
+  const testString2:string =  "concat(10, \"concat(A,B)\")";
+  const testString3:string =  "\"concat(\"A\", \"B\")\" ";
+  console.log("getLastCommaIndex Test:")
+  console.log("concat(10, \"concat(A,B)\")");
+  console.log(getLastCommaIndex(testString2));
+  console.log("concat(add(1,1) , concat(\" Bäume\", \" im Wald\"))");
+  console.log(getLastCommaIndex(testString1));
+  console.log("\"concat(\"A\", \"B\")\" ");
+  console.log(getLastCommaIndex(testString3));
+}
 //add()-Funktion
 function add(param1: any, param2: any) {
   if(isNaN(param1) || isNaN(param2)){
