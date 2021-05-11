@@ -26,7 +26,10 @@ export class BodyComponent implements OnInit {
     //Test Funktion stringSaveFinder
     //testStringSaveFinder();
     //Test getLastCommaIndex
-    testGetLastCommaIndex();
+    //testGetLastCommaIndex();
+    //Test: add()
+    testAdd();
+
   }
 }
 //ParseFunktion
@@ -59,7 +62,11 @@ function parse(param:string) {
   let inputRight:string = param.substring(commaIndex+1, closingParant-commaIndex);
   console.log(`Right:${inputRight}`)
   if(cmd === 'add'){
-    return concat(preCommand, concat(add(inputLeft, inputRight), param.substring(closingParant+1)));
+    let addOutput: any = add(inputLeft, inputRight);
+    if(addOutput != NaN) {
+      return concat(preCommand, concat(addOutput, param.substring(closingParant+1)));
+    }
+    return;
   } else if (cmd === 'concat') {
     return concat(preCommand, concat(concat(inputLeft, inputRight), param.substring(closingParant+1)));
   }
@@ -115,29 +122,47 @@ function getLastCommaIndex(param: string)
   }
     return idn + idx + 1;
 }
-
+//Testfunktion für getLastCommaIndex
 function testGetLastCommaIndex(): void
 {
-  const testString1:string =  "concat(add(1,1) , concat(\" Bäume\", \" im Wald\"))";
-  const testString2:string =  "concat(10, \"concat(A,B)\")";
-  const testString3:string =  "\"concat(\"A\", \"B\")\" ";
+  const testString4:string =  "concat(add(1,1) , concat(\" Bäume\", \" im Wald\"))";
+  const testString5:string =  "concat(10, \"concat(A,B)\")";
+  const testString6:string =  "\"concat(\"A\", \"B\")\" ";
   console.log("getLastCommaIndex Test:")
   console.log("concat(10, \"concat(A,B)\")");
-  console.log(getLastCommaIndex(testString2));
+  console.log(getLastCommaIndex(testString5));
   console.log("concat(add(1,1) , concat(\" Bäume\", \" im Wald\"))");
-  console.log(getLastCommaIndex(testString1));
+  console.log(getLastCommaIndex(testString4));
   console.log("\"concat(\"A\", \"B\")\" ");
-  console.log(getLastCommaIndex(testString3));
+  console.log(getLastCommaIndex(testString6));
 }
 //add()-Funktion
 function add(param1: any, param2: any) {
-  if(isNaN(param1) || isNaN(param2)){
-    return -5;  //nur provisorisch
-  }   else {
-    return param1 + param2;
-  }
-}
+  let numParam1!: number;
+  let numParam2!: number;
 
+  numParam1 = Number(param1);
+  numParam2 = Number(param2);
+
+  return numParam1 + numParam2;
+}
+//Test:add()-Funktion
+function testAdd(): void
+{
+  const testParam1:string =  "A";
+  const testParam2:number =  10;
+  const testParam3:string =  "10";
+  const testParam4:string = "add(10, 11)";
+  console.log("add() Test:")
+  // console.log("add(10, 10)");
+  // console.log(add(testParam2, testParam2));
+  console.log("add(A, 10)");
+  console.log(add(testParam1, testParam2));
+  console.log("add(10, \"10\")");
+  console.log(add(testParam2, testParam3));
+  console.log("add(10, \"add(10, 11)\")");
+  console.log(add(testParam2, testParam4));
+}
 //concat-Funktion
 function concat(param1:any, param2:any){
   param1 = param1 as string;
